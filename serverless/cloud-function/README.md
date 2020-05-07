@@ -35,3 +35,43 @@ Costs & Quotas
         - No charge
             - Incoming (ingress) data
             - Outbound data to Google APIs in same region
+        
+Deploying
+- Python
+```
+gcloud function deploy test-function-1 --runtime python37 --trigger-http
+```
+
+- Nodejs8
+```
+gcloud function deploy test-function-1 --runtime nodejs8 --trigger-http
+```
+
+Testing
+```
+gcloud function describe test-function-1
+```
+
+Environment Variables
+- An environment variable is a key/value pair
+- Defined at deployment
+    - Command line
+        -  in a commas separated list
+            - Create:
+                ``gcloud beta functions deploy FUNCTION_NAME --set-env-vars DATABASE=DB_TEST, DB_CONN=TEST FLAGS...``
+            - Update:
+                ``gcloud beta functions deploy FUNCTION_NAME --update-env-vars DATABASE=DB_PROD, DB_CONN=PROD FLAGS...``
+            - Delete:
+                 - Remove one or more:
+                ``gcloud beta functions deploy FUNCTION_NAME --remove-env-vars DATABASE FLAGS...``
+                 - To clear all set environment variables
+                 ``gcloud beta functions deploy FUNCTION_NAME --clear-env-vars FLAGS...``
+
+        - YAML file
+            ``gcloud beta functions deploy FUNCTION_NAME --env-vars-file .env.yaml FLAGS...``
+            ```yaml
+            DATABASE: DB_TEST
+            DB_CONN: TEST
+            ```
+    - Console
+    
