@@ -23,3 +23,28 @@
 - Scales up or scale outs
     - Use big VMs for memory- and compute-intensive applications
     - Use Autoscaling for resilient, scalable applications
+
+
+## App Engine
+
+- a PaaS for building scalable applications
+- makes deployment, maintenance, and scalability easy so you can focus on innovation
+- esp suited for building scalable web applications and mobile backends
+- standard environment:
+    - easily deploy your applications
+    - autoscale workloads
+    - free daily quota 
+    - usage based pricing 
+    - SDKs for development, testing and deployment
+    - sandbox constraints:
+        - no writing to local files
+        - all requests time out at 60s
+        - limits on third-party software
+- flexible environment:
+    - build and deploy containerized applications with a click
+    - no sandbox constraints 
+    - can access App Engine resources
+- Comparing the App Engine environments
+    ![image](https://user-images.githubusercontent.com/35857179/81493125-65faa780-92d0-11ea-8526-e2146d69d8d9.png)
+
+![image](https://user-images.githubusercontent.com/35857179/81493136-7a3ea480-92d0-11ea-8e33-a70af55fb857.png)
