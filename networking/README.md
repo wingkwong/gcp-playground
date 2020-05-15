@@ -8,6 +8,23 @@ Google Cloud VPC networks are global; subnets are regional
 - Use Shared VPC to share a network or individual subnets, with other GCP projects
 - Use VPC Peering to interconnect networks in GCP Projects
 
+Network Types
+- Default 
+    - Every Project
+    - One subnet per region
+    - Default firewall rules
+- Auto Mode
+    - Default Network 
+    - One subnet per region
+    - Regional IP allocation
+    - Fixed /20 subnetwork per region 
+    - Expandable up to /16
+- Custom Mode
+    - No default subnets created
+    - Full control of IP ranges
+    - Regional IP allocation
+    - Expandable to any RFC 1918 size
+
 ## Cloud Load Balancing 
 
 - Users get a single, global anycast IP address
