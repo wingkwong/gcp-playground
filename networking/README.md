@@ -1,5 +1,11 @@
 # Networking
 
+- A network
+    - has no IP address range
+    - is global and spans all available regions
+    - contains subnetworks 
+    - is available as default, auto, or custom
+
 ## VPC
 Google Cloud VPC networks are global; subnets are regional
 
@@ -25,6 +31,66 @@ Network Types
     - Regional IP allocation
     - Expandable to any RFC 1918 size
 
+Network Isolated Systems
+
+Network #1: VM-A(us-east1), VM-B(us-west1)
+Network #3: C (us-east1)
+Network #4: D (us-east1)
+
+- A and B can communicate over internal IPs even thought they are not in the same region
+- C and D must communicate over external IPs even though they are in the same region
+
+**Google's VPC is global**
+
+Subnetwork cross zones
+
+- VMs can be on the same subnet but in different zones
+- A single firewall rule can apply to both VMs
+
+Expand subnets without re-creating instances
+
+- Cannot overlap with other subnets
+- Must be inside the RDC 1918 address spaces
+- Can expand but not shrink
+- Auto mode can be expanded from /20 to /16
+- Avoid large subnets
+
+VMs can have internal and external IP addresses
+
+- Internal IP
+    - Allocated from subnet range to VMs by DHCP
+    - DHCP lease is renewed every 24 hours
+    - VM name + IP is registered with network-scoped DNS
+
+- External IP
+    - Assigned from pool (ephemeral)
+    - Reserved (static)
+    - VM doesn't know external IP; it is mapped to the internal IP
+        - use ``sudo /sbin/ifconfig`` for more details
+
+DNS resolution for internal addresses
+
+Each instance has a hostname that cna be resolved to an internal IP address:
+
+- The hostname is the same as the instance name
+- FQDN is [hostname].[zone].c.[project-id].internal
+
+Example: my-server.us-central-a.c.guestbook-123456.internal
+
+Name resolution is handled by internal DNS resolver:
+
+- Provided as part of Compute Engine (169.254.169.254)
+- Configured for use on instance via DHCP
+- Provides answer for internal and external addresses
+
+Instances with external IP address can allow connections from hosts outside the project
+
+- Users connect directly using external IP address
+- Admins can also publish public DNS records pointing to the instance
+    - Public DNS records are not published automatically
+- DNS records for external addresses can be published using existing DNS servers (outside of GCP)
+- DNS zones can be hosted using Cloud DNS
+
 ## Cloud Load Balancing 
 
 - Users get a single, global anycast IP address
@@ -37,7 +103,11 @@ Network Types
 
 ## Cloud DNS
 
-- Create managed zones, then add, edit, delete DNS records
+- Google's DNS service
+- Translate domain names into IP address
+- Low latency; High availability (100% uptime SLA)
+- Create and update millions of DNS records
+- UI, CLI or API
 
 ## Cloud CDN 
 
@@ -57,3 +127,24 @@ Network Types
 
 - Dedicated Interconnect
     - Connect N X 10G transport circuits for private cloud traffic to Google Cloud at Google POPs
+
+## Routes and firewall rules
+
+- VPC network functions as a distributed firewall
+- Firewall rules are applied to the network as a whole
+- Connections are allowed or denied at the instance level
+- Firewall rules are stateful
+- Implied deny all ingress and allow all egress
+
+Use case: Ingress/Egress
+
+Conditions:
+
+- Destination CIDR ranges
+- Protocols
+- Ports
+
+Action:
+
+- Allow: permit the matching ingress/egress connection
+- Deny: block the matching ingress/egress connection
