@@ -1,5 +1,34 @@
 # IAM
 
+- who
+- can do what
+- on which resource
+
+Cloud IAM objects
+- Organization
+    - e.g Company
+    - Roles: 
+        - Orgaization Admin: Control over all cloud resources; useful for auditing
+        - Project Creator: Control project creation; control over who can create projects
+- Folders
+    - e.g Departments
+    - Roles: Admin / Creator / Viewer
+- Projects
+    - e.g Trust Boundaries
+    - Roles: Creator / Deleter
+- Resources
+- Roles
+- Members
+    - Google Account
+    - Service Account
+        - server-to-server interactions without accessing user data
+        - e.g. 123456789-compute@project.gserviceaccount.com
+        - keys: GCP-managerd & user-managed
+    - Google Group
+    - Cloud Identity / G Suite domain
+
+Hierarchy: Organization -> Folders -> Projects -> Resources -> Roles -> Members
+
 Role Types
 - Primitive roles
 -   - Owner, Editor & Viewer (existed prior to the introduction of Cloud IAM)
