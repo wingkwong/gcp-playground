@@ -53,6 +53,7 @@
 - vertical scaling (read & write)
 - horizontal scaling (read)
 - google security
+- enable binary logging to use point-in-time recovery but it may slightly affect write performance
 
 ## Cloud Spanner
 
