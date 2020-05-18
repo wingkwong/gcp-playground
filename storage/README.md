@@ -1,8 +1,38 @@
 # Storage
 
-Choose among Cloud Storage classes
+- Use cases:
+    - website content
+    - storing data for archiving and disaster recovery
+        - distributing large data objects to users via direct download
+- Scalable to exabytes
+- Time to first byte in milliseconds
+- Very high availability across all storage classes
+- Single API across storage classes
+
+## Signed URLs
+- Valet key access to buckets and objects via ticket:
+    - crytographically signed URL
+    - time-limited
+    - operations specfied in ticket: HTTP, GET, PUT, DELETE (not POST)
+    - any user with URL can invoke permitted operations
+- Example:
+    - ``gsutil signurl -d 10m path/to/privatekey.p12 gs://bucket/object``
+
+## Strong Global Consistency
+
+- read-after-write
+- read-after-metadata-update
+- read-after-delete
+- bucket-listing
+- object-listing
+- granting access to resources
+
+## Choose among Cloud Storage classes
 
 ![image](https://user-images.githubusercontent.com/35857179/81492736-cc7dc680-92cc-11ea-8ab9-a7bb81458f74.png)
+
+![image](https://user-images.githubusercontent.com/35857179/82185697-3a08a300-991c-11ea-8392-51a6e9529070.png)
+
 
 ## Cloud Bigtable
 
