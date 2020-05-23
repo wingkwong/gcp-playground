@@ -90,15 +90,15 @@
     - SSL Proxy Load Balancing
     - HTTP(s) Load Balancing
 - Stackdriver Monitoring --- uptime check ---> storage/database/network
-
-```
-gcloud compute health-checks create [PROTOCOl]
-[HEALTH_CHECK_NAME] \
---description=[DESCRIPTION] \
---check-interval=[CHECK_INTERVAL] \
---timeout=[TIMEOUT] \
---healthy-threshold=[HEALTHY_THRESHOLD] \
---unhealthy-threshold=[UNHEALTHY_THRESHOLD] \
-...additional flags
-```
+- Example:
+    ```
+    gcloud compute health-checks create [PROTOCOl]
+    [HEALTH_CHECK_NAME] \
+    --description=[DESCRIPTION] \
+    --check-interval=[CHECK_INTERVAL] \
+    --timeout=[TIMEOUT] \
+    --healthy-threshold=[HEALTHY_THRESHOLD] \
+    --unhealthy-threshold=[UNHEALTHY_THRESHOLD] \
+    ...additional flags
+    ```
 
